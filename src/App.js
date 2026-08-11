@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import QRCode from 'react-qr-code';
 import QRCodeLink from 'qrcode';
 import './App.css';
@@ -6,27 +6,33 @@ import './App.css';
 function App() {
   const [link, setLink] = useState('');
   const [qrcodeLink, setQrcodeLink] = useState('');
+  const [color, setColor] = useState('#000000');
+  const [size, setSize] = useState(256);
 
-  function handleGenerate(link_url){
+  function handleGenerate(link_url, qr_color, qr_size){
     if(!link_url) {
       setQrcodeLink('');
       return;
     }
     QRCodeLink.toDataURL(link_url, {
-      width: 600,
+      width: qr_size,
       margin: 3,
       color: {
-        dark: '#000000',
+        dark: qr_color,
         light: '#ffffff'
       }
     }, function(err, url){
-      setQrcodeLink(url);
-    })
+      if(!err) setQrcodeLink(url);
+    });
   }
+
+  // Regen when color or size changes
+  useEffect(() => {
+    handleGenerate(link, color, size);
+  }, [link, color, size]);
 
   function handleQrcode(e){
     setLink(e.target.value);
-    handleGenerate(e.target.value);
   }
 
   return (
@@ -36,7 +42,7 @@ function App() {
         
         {link ? (
           <div className="qrcode-container">
-            <QRCode value={link} size={256} />
+            <QRCode value={link} size={size > 300 ? 300 : size} fgColor={color} />
           </div>
         ) : (
           <div className="empty-state">
@@ -60,10 +66,34 @@ function App() {
           />
         </div>
 
+        <div className="controls">
+          <div className="control-group">
+            <label>Cor do QR Code</label>
+            <input 
+              type="color" 
+              className="color-input"
+              value={color}
+              onChange={(e) => setColor(e.target.value)}
+            />
+          </div>
+          <div className="control-group">
+            <label>Tamanho: {size}px</label>
+            <input 
+              type="range" 
+              className="range-input"
+              min="128" 
+              max="1024" 
+              step="32"
+              value={size}
+              onChange={(e) => setSize(Number(e.target.value))}
+            />
+          </div>
+        </div>
+
         <a 
           className={`download-btn ${!qrcodeLink ? 'disabled' : ''}`}
           href={qrcodeLink || '#'} 
-          download={qrcodeLink ? 'qrcode.png' : undefined}
+          download={qrcodeLink ? `qrcode_${size}px.png` : undefined}
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
