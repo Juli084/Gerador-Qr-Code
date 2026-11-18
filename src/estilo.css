@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", "SF Mono", Consolas, monospace;
+  --color-papel: #f5f4f0;
+  --color-cartao: #ffffff;
+  --color-tinta: #1c1b19;
+  --color-suave: #66615a;
+  --color-linha: #e2ded5;
+  --color-destaque: #0f766e;
+  --color-destaque-claro: #e3f1ef;
+  --color-risco: #b42318;
+  --color-atencao: #93510a;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-papel);
+  color: var(--color-tinta);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-destaque);
+  outline-offset: 2px;
+}
+
+/* Fundo quadriculado para mostrar transparência na prévia. */
+.xadrez {
+  background-color: #fff;
+  background-image: conic-gradient(#e8e5de 25%, transparent 0 50%, #e8e5de 0 75%, transparent 0);
+  background-size: 16px 16px;
+}
+
+input[type="color"] {
+  -webkit-appearance: none;
+  appearance: none;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+  border: 1px solid var(--color-linha);
+  border-radius: 0.6rem;
+}
+input[type="color"]::-moz-color-swatch {
+  border: 1px solid var(--color-linha);
+  border-radius: 0.6rem;
+}
