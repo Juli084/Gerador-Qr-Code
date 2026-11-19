@@ -8,6 +8,17 @@ Tudo roda no navegador. A senha do Wi-Fi, a chave Pix e o logo não saem da pág
 servidor, nem análise de acesso, nem chamada externa. Os testes de navegador falham se a página
 fizer qualquer requisição para fora.
 
+![Gerador no computador, com um Pix de R$ 25,90 e o QR Code conferido ao lado](docs/tela.webp)
+
+<details>
+<summary>No celular</summary>
+
+![Gerador no celular: o formulário de link e o QR Code pronto para baixar](docs/celular.webp)
+
+</details>
+
+A chave Pix da imagem é a chave aleatória de exemplo do manual do Banco Central.
+
 ## O que dá para gerar
 
 | Tipo | O que o celular faz ao ler | Cuidados que o formulário já toma |
