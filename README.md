@@ -4,6 +4,8 @@ QR Code para link, WhatsApp, Wi-Fi, Pix, contato e e-mail, com cor, logo e texto
 SVG. Antes do download, o próprio site lê o código de volta e confere que ele devolve exatamente o
 conteúdo digitado.
 
+**No ar:** [gerador-qr-code-mu.vercel.app](https://gerador-qr-code-mu.vercel.app)
+
 Tudo roda no navegador. A senha do Wi-Fi, a chave Pix e o logo não saem da página: não há
 servidor, nem análise de acesso, nem chamada externa. Os testes de navegador falham se a página
 fizer qualquer requisição para fora.
